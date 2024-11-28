@@ -31,6 +31,24 @@ class DatabaseHelper {
             balance_date TEXT
           )
         ''');
+        await db.execute('''
+        CREATE TABLE entities(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT,
+          affectsBalance BOOLEAN
+        )
+      ''');
+        await db.execute('''
+        CREATE TABLE transactions(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          type TEXT,
+          amount REAL,
+          fromEntityId INTEGER,
+          toEntityId INTEGER,
+          date TEXT,
+          description TEXT
+        )
+      ''');
       },
     );
   }
@@ -65,5 +83,39 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) {
       return BankAccount.fromMap(maps[i]);
     });
+  }
+
+  Future<Database> getDatabase() async {
+    if (_database != null) return _database!;
+    _database = await _initDatabase();
+    return _database!;
+  }
+
+  Future<List<Entity>> getEntities() async {
+    final db = await database;
+    List<Map<String, dynamic>> maps = await db.query('entities');
+    return List.generate(maps.length, (i) {
+      return Entity(
+        id: maps[i]['id'],
+        name: maps[i]['name'],
+        affectsBalance: maps[i]['affectsBalance'] == 1,
+      );
+    });
+  }
+
+  Future<void> insertTransaction(FinancialTransaction transaction) async {
+    final db = await database;
+    await db.insert(
+      'transactions',
+      {
+        'type': transaction.type,
+        'amount': transaction.amount,
+        'fromEntityId': transaction.fromEntityId,
+        'toEntityId': transaction.toEntityId,
+        'date': transaction.date.toIso8601String(),
+        'description': transaction.description,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }
