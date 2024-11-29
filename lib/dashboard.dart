@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'transaction_screen.dart'; // Import the transaction screen
 import 'package:intl/intl.dart'; // Import the intl package to format date
 import 'bank_accounts.dart'; // Import the Bank Accounts screen
+import 'categories.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -38,14 +39,14 @@ class Dashboard extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.account_balance),
+              leading: Icon(Icons.category),
               title: Text('Categories'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          BankAccountsScreen()), // Navigate to Bank Accounts
+                          CategoriesScreen()), // Navigate to Bank Accounts
                 );
               },
             ),

@@ -12,11 +12,12 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDatabase();
+    _database = await _initDatabase(); // Corrected method name
     return _database!;
   }
 
   Future<Database> _initDatabase() async {
+    // Corrected method name
     String path = join(await getDatabasesPath(), 'finance.db');
     return await openDatabase(
       path,
@@ -49,6 +50,12 @@ class DatabaseHelper {
           description TEXT
         )
       ''');
+        await db.execute('''
+          CREATE TABLE categories (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT
+          )
+        ''');
       },
     );
   }
@@ -83,6 +90,19 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) {
       return BankAccount.fromMap(maps[i]);
     });
+  }
+
+  Future<void> insertCategory(Category category) async {
+    final db = await database;
+    await db.insert('categories', category.toMap());
+  }
+
+  Future<List<Category>> getCategories() async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('categories');
+    return List.generate(maps.length, (i) {
+      return Category.fromMap(maps[i]);
+    }); // List.generate
   }
 
   Future<Database> getDatabase() async {
