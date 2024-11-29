@@ -37,6 +37,18 @@ class Dashboard extends StatelessWidget {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(Icons.account_balance),
+              title: Text('Categories'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          BankAccountsScreen()), // Navigate to Bank Accounts
+                );
+              },
+            ),
             // Add any other items for navigation if needed
           ],
         ),
