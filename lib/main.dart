@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dashboard.dart';
+import 'views/dashboard.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Personal Finance Tracker',
+      title: 'Finance Tracker',
       theme: ThemeData(primarySwatch: Colors.blueGrey),
-      home: Dashboard(),
+      home: const Dashboard(),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'database_helper.dart';
-import 'entity.dart';
 
 class BankAccountsScreen extends StatefulWidget {
   @override

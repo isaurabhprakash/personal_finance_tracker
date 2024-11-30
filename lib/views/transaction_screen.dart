@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'database_helper.dart';
-import 'entity.dart';
+import '../database_helper.dart';
+import '../models/entity.dart';
 
 abstract class BaseTransactionScreen extends StatefulWidget {
   final String mode;
