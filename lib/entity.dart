@@ -54,14 +54,6 @@ class Category {
   }
 }
 
-class Entity {
-  final int id;
-  final String name;
-  final bool affectsBalance;
-
-  Entity({required this.id, required this.name, required this.affectsBalance});
-}
-
 class FinancialTransaction {
   final String type; // 'Expenditure', 'Income', 'Self-Transfer'
   final double amount;

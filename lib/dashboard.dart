@@ -86,8 +86,7 @@ class Dashboard extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              TransactionScreen(mode: 'Expenditure'),
+                          builder: (context) => ExpensesScreen(),
                         ),
                       );
                     },
@@ -100,8 +99,7 @@ class Dashboard extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              TransactionScreen(mode: 'Income'),
+                          builder: (context) => IncomeScreen(),
                         ),
                       );
                     },
@@ -114,8 +112,7 @@ class Dashboard extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              TransactionScreen(mode: 'Self-Transfer'),
+                          builder: (context) => SelfTransferScreen(),
                         ),
                       );
                     },

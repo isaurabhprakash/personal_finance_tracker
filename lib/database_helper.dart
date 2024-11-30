@@ -111,18 +111,6 @@ class DatabaseHelper {
     return _database!;
   }
 
-  Future<List<Entity>> getEntities() async {
-    final db = await database;
-    List<Map<String, dynamic>> maps = await db.query('entities');
-    return List.generate(maps.length, (i) {
-      return Entity(
-        id: maps[i]['id'],
-        name: maps[i]['name'],
-        affectsBalance: maps[i]['affectsBalance'] == 1,
-      );
-    });
-  }
-
   Future<void> insertTransaction(FinancialTransaction transaction) async {
     final db = await database;
     await db.insert(
