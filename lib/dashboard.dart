@@ -12,20 +12,15 @@ class Dashboard extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Personal Finance Tracker'),
+        title: Text('Finance Tracker'),
         backgroundColor: Colors.blueGrey,
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blueGrey),
-              child: Text(
-                'Navigation',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
+            SizedBox(height: 55),
+
             ListTile(
               leading: Icon(Icons.account_balance),
               title: Text('Bank Accounts'),
@@ -41,6 +36,18 @@ class Dashboard extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.category),
               title: Text('Categories'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CategoriesScreen()), // Navigate to Bank Accounts
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.credit_card),
+              title: Text('Credit Cards'),
               onTap: () {
                 Navigator.push(
                   context,
